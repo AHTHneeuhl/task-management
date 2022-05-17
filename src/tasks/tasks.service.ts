@@ -30,20 +30,13 @@ export class TasksService {
   //   }
   //   return tasks;
   // }
-  // createTask(createTaskDto: CreateTaskDto): Task {
-  //   const { title, description } = createTaskDto;
-  //   const task: Task = {
-  //     id: uuid(),
-  //     title,
-  //     description,
-  //     status: TaskStatus.OPEN,
-  //   };
-  //   this.tasks.push(task);
-  //   return task;
-  // }
+
+  createTask(createTaskDto: CreateTaskDto): Promise<Task> {
+    return this.tasksRepository.createTask(createTaskDto);
+  }
 
   async getTask(id: string): Promise<Task> {
-    const found = await this.tasksRepository.findOne({ where: { id } });
+    const found = await this.tasksRepository.findOne(id);
 
     if (!found) {
       throw new NotFoundException(`Task with ID ${id} not found`);

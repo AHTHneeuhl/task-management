@@ -27,10 +27,10 @@ export class TasksController {
   //   }
   // }
 
-  // @Post()
-  // createTask(@Body() createTaskDto: CreateTaskDto): Task {
-  //   return this.tasksService.createTask(createTaskDto);
-  // }
+  @Post()
+  createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+    return this.tasksService.createTask(createTaskDto);
+  }
 
   @Get('/:id')
   getTask(@Param('id') id: string): Promise<Task> {
